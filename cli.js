@@ -34,7 +34,7 @@ const HA_DEVICE = {
 
 const HA_POWER_STATE_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_powerstate",
-  name: "Power State",
+  name: LGTV_CONFIG.name + " Power State",
   device: HA_DEVICE,
   icon: "mdi:power",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
@@ -45,7 +45,7 @@ const HA_POWER_STATE_SENSOR = {
 
 const HA_POWER_SWITCH = {
   unique_id: LGTV_CONFIG.name + "_power",
-  name: "Power",
+  name: LGTV_CONFIG.name + " Power",
   device: HA_DEVICE,
   icon: "mdi:power",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
@@ -59,30 +59,9 @@ const HA_POWER_SWITCH = {
   payload_off: "off",
   payload_on: "on",
 };
-/*
-const HA_POWER_OFF_SWITCH = {
-  unique_id: LGTV_CONFIG.name + "_poweroff",
-  name: "Power Off",
-  device: HA_DEVICE,
-  icon: "mdi:power",
-  availability_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
-  availability_template: "{{ 'online' if value_json.state == 'Active' else 'offline' }}",
-  json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
-  json_attributes_template: "{{ value_json | tojson }}",
-  state_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
-  value_template: "{{ 'on' if value_json.state in ['Active', 'Screen Saver'] else 'off' }}",
-  state_off: "off",
-  state_on: "on",
-  // optimistic: true,
-  command_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "cmnd", "power"].join("/"),
-  command_template: "{{ value }}",
-  payload_off: "off",
-  payload_on: "on",
-};
-*/
 const HA_POWER_OFF_BUTTON = {
   unique_id: LGTV_CONFIG.name + "_poweroff",
-  name: "Power Off",
+  name: LGTV_CONFIG.name + " Power Off",
   device: HA_DEVICE,
   icon: "mdi:power",
   availability_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
@@ -96,7 +75,7 @@ const HA_POWER_OFF_BUTTON = {
 
 const HA_APPID_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_appid",
-  name: "App ID",
+  name: LGTV_CONFIG.name + " App ID",
   device: HA_DEVICE,
   icon: "mdi:application",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "foregroundApp"].join("/"),
@@ -131,7 +110,7 @@ const NAME_APPID_MAP     = Object.fromEntries(APPID_NAME_ENTRIES.map(([k, v]) =>
 
 const HA_APPLICATION_SELECT = {
   unique_id: LGTV_CONFIG.name + "_application",
-  name: "Application",
+  name: LGTV_CONFIG.name + " Application",
   device: HA_DEVICE,
   icon: "mdi:application",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "foregroundApp"].join("/"),
@@ -145,7 +124,7 @@ const HA_APPLICATION_SELECT = {
 
 const HA_LIVE_TV_CHANNEL_NAME_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_livetvchannelname",
-  name: "Live TV Channel Name",
+  name: LGTV_CONFIG.name + " Live TV Channel Name",
   device: HA_DEVICE,
   icon: "mdi:television-classic",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "liveTvChannel"].join("/"),
@@ -156,7 +135,7 @@ const HA_LIVE_TV_CHANNEL_NAME_SENSOR = {
 
 const HA_LIVE_TV_CHANNEL_NUMBER_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_livetvchannelnumber",
-  name: "Live TV Channel Number",
+  name: LGTV_CONFIG.name + " Live TV Channel Number",
   device: HA_DEVICE,
   icon: "mdi:television-classic",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "liveTvChannel"].join("/"),
@@ -167,7 +146,7 @@ const HA_LIVE_TV_CHANNEL_NUMBER_SENSOR = {
 
 const HA_LIVE_TV_CHANNEL_ID_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_livetvchannelid",
-  name: "Live TV Channel ID",
+  name: LGTV_CONFIG.name + " Live TV Channel ID",
   device: HA_DEVICE,
   icon: "mdi:television-classic",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "liveTvChannel"].join("/"),
@@ -186,7 +165,7 @@ const NAME_LIVE_TV_CHANNELID_MAP     = Object.fromEntries(LIVE_TV_CHANNELID_NAME
 
 const HA_LIVE_TV_CHANNEL_SELECT = {
   unique_id: LGTV_CONFIG.name + "_livetvchannel",
-  name: "Live TV Channel",
+  name: LGTV_CONFIG.name + " Live TV Channel",
   device: HA_DEVICE,
   icon: "mdi:television-classic",
   availability_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "foregroundApp"].join("/"),
@@ -202,7 +181,7 @@ const HA_LIVE_TV_CHANNEL_SELECT = {
 
 const HA_VOLUME_NUMBER = {
   unique_id: LGTV_CONFIG.name + "_volume",
-  name: "Volume",
+  name: LGTV_CONFIG.name + " Volume",
   device: HA_DEVICE,
   icon: "mdi:volume-high",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "audioStatus"].join("/"),
@@ -217,7 +196,7 @@ const HA_VOLUME_NUMBER = {
 };
 const HA_VOLUME_UP_BUTTON = {
   unique_id: LGTV_CONFIG.name + "_volumeup",
-  name: "Volume Up",
+  name: LGTV_CONFIG.name + " Volume Up",
   device: HA_DEVICE,
   icon: "mdi:volume-plus",
   availability_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
@@ -230,7 +209,7 @@ const HA_VOLUME_UP_BUTTON = {
 };
 const HA_VOLUME_DOWN_BUTTON = {
   unique_id: LGTV_CONFIG.name + "_volumedown",
-  name: "Volume Up",
+  name: LGTV_CONFIG.name + " Volume Up",
   device: HA_DEVICE,
   icon: "mdi:volume-minus",
   availability_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
@@ -244,7 +223,7 @@ const HA_VOLUME_DOWN_BUTTON = {
 
 const HA_MUTE_SWITCH = {
   unique_id: LGTV_CONFIG.name + "_mute",
-  name: "Mute",
+  name: LGTV_CONFIG.name + " Mute",
   device: HA_DEVICE,
   icon: "mdi:volume-mute",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "audioStatus"].join("/"),
@@ -261,7 +240,7 @@ const HA_MUTE_SWITCH = {
 
 const HA_SOUND_OUTPUT_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_soundoutput",
-  name: "Sound Output",
+  name: LGTV_CONFIG.name + " Sound Output",
   device: HA_DEVICE,
   icon: "mdi:surround-sound",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "audioStatus"].join("/"),
@@ -272,7 +251,7 @@ const HA_SOUND_OUTPUT_SENSOR = {
 
 const HA_SOUND_MODE_SENSOR = {
   unique_id: LGTV_CONFIG.name + "_soundmode",
-  name: "Sound Mode",
+  name: LGTV_CONFIG.name + " Sound Mode",
   device: HA_DEVICE,
   icon: "mdi:surround-sound",
   json_attributes_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "soundSettings"].join("/"),
@@ -449,7 +428,6 @@ const onMqttEvents = {
 mqttClient.on("connect", () => {
   publishHAMqttMessageSync("sensor", "powerstate", HA_POWER_STATE_SENSOR);
   publishHAMqttMessageSync("switch", "power", HA_POWER_SWITCH);
-  //publishHAMqttMessageSync("switch", "poweroff", HA_POWER_OFF_SWITCH);
   publishHAMqttMessageSync("button", "poweroff", HA_POWER_OFF_BUTTON);
   publishHAMqttMessageSync("sensor", "appid", HA_APPID_SENSOR);
   publishHAMqttMessageSync("select", "appid", HA_APPLICATION_SELECT);
