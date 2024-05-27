@@ -209,7 +209,7 @@ const HA_VOLUME_UP_BUTTON = {
 };
 const HA_VOLUME_DOWN_BUTTON = {
   unique_id: LGTV_CONFIG.name + "_volumedown",
-  name: LGTV_CONFIG.name + " Volume Up",
+  name: LGTV_CONFIG.name + " Volume Down",
   device: HA_DEVICE,
   icon: "mdi:volume-minus",
   availability_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "powerState"].join("/"),
