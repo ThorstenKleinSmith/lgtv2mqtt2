@@ -20,9 +20,21 @@ const LGTV_CONFIG = getConfig(CONFIG, {
   mac: null,
   lgtv_base_topic: "lgtv2mqtt",
 });
+const APPID_CHANNEL_CONFIG = getConfig(CONFIG, {
+  appid_name_entries: [],
+  live_tv_channelid_name_entries: [],
+});
 const HA_CONFIG = getConfig(CONFIG, {
   ha_base_topic: "homeassistant",
 });
+
+const APPID_NAMES        = APPID_CHANNEL_CONFIG.appid_name_entries.map(([_k, v]) => v);
+const APPID_NAME_MAP_STR = "{" + APPID_CHANNEL_CONFIG.appid_name_entries.map(([k, v]) => `'${k}': '${v}'`).join(",") + "}";
+const NAME_APPID_MAP     = Object.fromEntries(APPID_CHANNEL_CONFIG.appid_name_entries.map(([k, v]) => [v, k]));
+
+const LIVE_TV_CHANNELID_NAMES        = APPID_CHANNEL_CONFIG.live_tv_channelid_name_entries.map(([_k1, _k2, v]) => v);
+const LIVE_TV_CHANNELID_NAME_MAP_STR = "{" + APPID_CHANNEL_CONFIG.live_tv_channelid_name_entries.map(([k1, k2, v]) => `'${k1}/${k2}': '${v}'`).join(",") + "}";
+const NAME_LIVE_TV_CHANNELID_MAP     = Object.fromEntries(APPID_CHANNEL_CONFIG.live_tv_channelid_name_entries.map(([k1, k2, v]) => [v, {number: k1, id: k2}]));
 
 const HA_DEVICE = {
   "connections":  [["mac", LGTV_CONFIG.mac]],
@@ -84,30 +96,6 @@ const HA_APPID_SENSOR = {
   value_template: "{{ value_json.appId }}",
 };
 
-const APPID_NAME_ENTRIES = [
-  ["com.webos.app.home",         "Home"],
-  ["netflix",                    "Netflix"],
-  ["amazon",                     "Prime Video"],
-  ["com.disney.disneyplus-prod", "Disney+"],
-  ["com.fvp.ch4",                "4"],
-  ["demand5",                    "my5"],
-  ["com.fvp.itv",                "itvX"],
-  ["com.fvp.fve",                "Freeview Play"],
-  ["ui30",                       "Rakuten TV"],
-  ["com.webos.app.lgchannels",   "LG Channels"],
-  ["com.apple.appletv",          "Apple TV"],
-  ["bbc.iplayer.3.0",            "BBC iPlayer"],
-  ["com.webos.app.livetv",       "Live TV"],
-  ["youtube.leanback.v4",        "YouTube"],
-  ["cdp-30",                     "Plex"],
-  ["bbc.sounds.1.0",             "BBC Sounds"],
-  ["com.webos.app.hdmi1",        "PlayStation 4"],
-  ["com.webos.app.hdmi3",        "PlayStation 3"],
-];
-const APPID_NAMES        = APPID_NAME_ENTRIES.map(([_k, v]) => v);
-const APPID_NAME_MAP_STR = "{" + APPID_NAME_ENTRIES.map(([k, v]) => `'${k}': '${v}'`).join(",") + "}";
-const NAME_APPID_MAP     = Object.fromEntries(APPID_NAME_ENTRIES.map(([k, v]) => [v, k]));
-
 const HA_APPLICATION_SELECT = {
   unique_id: LGTV_CONFIG.name + "_application",
   name: LGTV_CONFIG.name + " Application",
@@ -154,14 +142,6 @@ const HA_LIVE_TV_CHANNEL_ID_SENSOR = {
   state_topic: [LGTV_CONFIG.lgtv_base_topic, LGTV_CONFIG.name, "liveTvChannel"].join("/"),
   value_template: "{{ value_json.channelId }}",
 };
-
-const LIVE_TV_CHANNELID_NAME_ENTRIES = [
-  [13, "1_26_13_13_8197_8448_9018", "E4"],
-  [30, "1_26_30_30_8197_8458_9018", "E4+1"],
-];
-const LIVE_TV_CHANNELID_NAMES        = LIVE_TV_CHANNELID_NAME_ENTRIES.map(([_k1, _k2, v]) => v);
-const LIVE_TV_CHANNELID_NAME_MAP_STR = "{" + LIVE_TV_CHANNELID_NAME_ENTRIES.map(([k1, k2, v]) => `'${k1}/${k2}': '${v}'`).join(",") + "}";
-const NAME_LIVE_TV_CHANNELID_MAP     = Object.fromEntries(LIVE_TV_CHANNELID_NAME_ENTRIES.map(([k1, k2, v]) => [v, {number: k1, id: k2}]));
 
 const HA_LIVE_TV_CHANNEL_SELECT = {
   unique_id: LGTV_CONFIG.name + "_livetvchannel",
